@@ -23,34 +23,34 @@ describe('', () => {
             userEvent.click(buttonElement)
 
         }
-        test('ボタンを押したらIDが表示されること', async () => {
 
+        test('ボタンを押したらapiから取得した名前の情報を表示すること', async () => {
             await renderApplication('/', (new AppPropsBuilder()).build())
 
             clickButton()
 
             await waitFor(() => {
-                expect(screen.getByText('#25')).toBeInTheDocument()
+                expect(screen.getByText("pikachu")).toBeInTheDocument()
             })
         })
 
-        test('ボタンを押したら名前が表示されること', async () => {
+        test('ボタンを押したらapiから取得したidの情報を表示すること', async () => {
             await renderApplication('/', (new AppPropsBuilder()).build())
 
             clickButton()
 
             await waitFor(() => {
-                expect(screen.getByText('ピカチュウ')).toBeInTheDocument()
+                expect(screen.getByText("#25")).toBeInTheDocument()
             })
         })
 
-        test('ボタンを押したらタイプが表示されること', async () => {
+        test('ボタンを押したらapiから取得したTypeの情報を表示すること', async () => {
             await renderApplication('/', (new AppPropsBuilder()).build())
 
             clickButton()
 
             await waitFor(() => {
-                expect(screen.getByText('カミナリ')).toBeInTheDocument()
+                expect(screen.getByText("electric")).toBeInTheDocument()
             })
         })
     })

@@ -1,6 +1,7 @@
 import styles from './HomeScreen.module.scss'
 import Contents from '../../Contents'
 import {useState} from "react";
+import axios from "axios";
 
 
 type PokeObj = {
@@ -14,10 +15,22 @@ export default function HomeScreen() {
 
     function randomSelectPokemon() {
         setPokeObj({
-            id: '#25',
+            id: '',
             name: 'ピカチュウ',
-            type: 'カミナリ'
+            type: ''
         })
+        //https://pokeapi.co/api/v2/pokemon/25
+        fetchPokemon()
+    }
+
+    const fetchPokemon = () => {
+        axios.get("https://pokeapi.co/api/v2/pokemon/25")
+            .then((res) => setPokeObj({
+                id: "#" + res.data.id,
+                name: res.data.name,
+                type: res.data.types[0].type.name
+            }))
+
     }
 
     return (
