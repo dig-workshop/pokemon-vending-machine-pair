@@ -16,15 +16,17 @@ export default function HomeScreen() {
     function randomSelectPokemon() {
         setPokeObj({
             id: '',
-            name: 'ピカチュウ',
+            name: '',
             type: ''
         })
+        // const randomNum = Math.floor(Math.random() * 1010) + 1
+        const randomNum = Math.floor(Math.random())
         //https://pokeapi.co/api/v2/pokemon/25
-        fetchPokemon()
+        fetchPokemon(randomNum)
     }
 
-    const fetchPokemon = () => {
-        axios.get("https://pokeapi.co/api/v2/pokemon/25")
+    const fetchPokemon = (randomNum: number) => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${randomNum}`)
             .then((res) => setPokeObj({
                 id: "#" + res.data.id,
                 name: res.data.name,

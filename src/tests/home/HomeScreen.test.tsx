@@ -23,12 +23,20 @@ describe('', () => {
             userEvent.click(buttonElement)
 
         }
+        let  spyFloor: any
+        beforeEach(() => {
+            spyFloor = jest.spyOn(Math, 'floor')
+            spyFloor.mockReturnValue(25)
 
+        })
+        afterEach(() => {
+            spyFloor.mockRestore()
+        })
         test('ボタンを押したらapiから取得した名前の情報を表示すること', async () => {
             await renderApplication('/', (new AppPropsBuilder()).build())
-
-            clickButton()
-
+            await act(()=> {
+                clickButton()
+            })
             await waitFor(() => {
                 expect(screen.getByText("pikachu")).toBeInTheDocument()
             })
@@ -36,9 +44,9 @@ describe('', () => {
 
         test('ボタンを押したらapiから取得したidの情報を表示すること', async () => {
             await renderApplication('/', (new AppPropsBuilder()).build())
-
-            clickButton()
-
+            await act(()=> {
+                clickButton()
+            })
             await waitFor(() => {
                 expect(screen.getByText("#25")).toBeInTheDocument()
             })
@@ -46,12 +54,55 @@ describe('', () => {
 
         test('ボタンを押したらapiから取得したTypeの情報を表示すること', async () => {
             await renderApplication('/', (new AppPropsBuilder()).build())
-
-            clickButton()
-
+            await act(()=> {
+                clickButton()
+            })
             await waitFor(() => {
                 expect(screen.getByText("electric")).toBeInTheDocument()
             })
+        })
+        it("Math randomを呼んでいること", async () => {
+            await renderApplication('/', (new AppPropsBuilder()).build())
+            const spyRandom = jest.spyOn(Math, 'random')
+
+            await act(() => {
+                clickButton()
+            })
+            expect(spyRandom).toHaveBeenCalled()
+
+            spyRandom.mockRestore()
+        })
+
+        it("Math floorを呼んでいること", async () => {
+            await renderApplication('/', (new AppPropsBuilder()).build())
+
+            await act(() => {
+                clickButton()
+            })
+            expect(spyFloor).toHaveBeenCalled()
+        })
+
+        it("randomな数字でapiのレスポンスを受け取っていること", async () => {
+            await renderApplication('/', (new AppPropsBuilder()).build())
+            spyFloor.mockReturnValue(1010)
+            await act(() => {
+                clickButton()
+            })
+            await waitFor(() => {
+                expect(screen.getByText("iron-leaves")).toBeInTheDocument()
+            })
+            spyFloor.mockRestore()
+
+            spyFloor = jest.spyOn(Math, 'floor')
+            spyFloor.mockReturnValue(1)
+            await act(() => {
+                clickButton()
+            })
+            await waitFor(() => {
+                expect(screen.getByText("bulbasaur")).toBeInTheDocument()
+            })
+
+            spyFloor.mockRestore()
         })
     })
 })
