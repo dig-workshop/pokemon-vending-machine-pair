@@ -5,6 +5,7 @@ import {Link, Route, Routes} from 'react-router-dom'
 import Contents from './Contents'
 import HomeScreen from "./pokemonVendingMachine/home/HomeScreen";
 import MyCardScreen from './pokemonVendingMachine/myCardScreen/MyCardScreen'
+import {UnpackScreen} from "./pokemonVendingMachine/UnpackScreen/UnpackScreen";
 
 export interface PokemonRepo {
 }
@@ -33,6 +34,7 @@ export default function App(props: AppProps) {
                 <Route path="/my-card"
                        element={<MyCardScreen/>}
                 />
+                <Route path="/unpack" element={<UnpackScreen/>}/>
             </Routes>
         </>
     )
