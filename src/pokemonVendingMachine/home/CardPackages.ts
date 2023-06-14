@@ -7,15 +7,16 @@ import pack_image6 from '../images/pack_ver6.png'
 
 interface CardPackage {
     id: number
-    namePrice: string,
+    price: string,
+    name: string,
     image: string
 }
 
 export const cardPackages : CardPackage[] = [
-    {id: 1, namePrice: '拡張パック 20th Anniversary 10枚入り (¥260)', image: pack_image1},
-    {id: 2, namePrice: 'neo 金,銀,新世界へ・・・ (¥180)', image: pack_image2},
-    {id: 3, namePrice: 'さいはての攻防 拡張パック (¥290)', image: pack_image3},
-    {id: 4, namePrice: 'DP 時空の創造 (¥310)', image: pack_image4},
-    {id: 5, namePrice: 'ブラックコレクション拡張パック (¥170)', image: pack_image5},
-    {id: 6, namePrice: 'ソード&シールド Vmax ライジング 強化拡張パック (¥410)', image: pack_image6},
+    {id: 1, price: '¥260', name: '拡張パック 20th Anniversary 10枚入り', image: pack_image1},
+    {id: 2, price: '¥180', name: 'neo 金,銀,新世界へ・・・', image: pack_image2},
+    {id: 3, price: '¥290', name: 'さいはての攻防 拡張パック', image: pack_image3},
+    {id: 4, price: '¥310', name: 'DP 時空の創造', image: pack_image4},
+    {id: 5, price: '¥170', name: 'ブラックコレクション拡張パック', image: pack_image5},
+    {id: 6, price: '¥410', name: 'ソード&シールド Vmax ライジング 強化拡張パック', image: pack_image6},
 ]
